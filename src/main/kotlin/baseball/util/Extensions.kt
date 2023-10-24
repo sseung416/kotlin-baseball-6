@@ -9,14 +9,15 @@ fun String.toIntList(): List<Int> =
         current.toInt()
     }
 
+/**
+ * @param includeSign 기호를 포함하여 검사할 건지 여부
+ * */
 fun String.isInt(includeSign: Boolean = true): Boolean {
-    val value = if (!includeSign) {
-        this.removeSign()
-    } else {
-        this
+    if (includeSign && containsSign()) {
+        return false
     }
 
-    return value.toIntOrNull() != null
+    return this.toIntOrNull() != null
 }
 
 fun String.removeSign(): String {
